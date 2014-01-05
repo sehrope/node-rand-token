@@ -16,6 +16,16 @@ Add it to your node.js project via:
     // Generate a 16 character alpha-numeric token:
     var token = randtoken.generate(16);
 
+# Defaults
+
+The default set of allowed characters is all alpha-numeric characters. Specifically, lower case a through z, upper case A through Z, and the number 0 through 9. This gives you `(26 + 26 + 10)` = `62` possibilities per character.
+
+Using 8 character random tokens will give you a possible token space of 62^8 = 2.18 x 10^21 ~= 2^47
+
+Using 12 character random tokens will give you a possible token space of 62^12 = 3.22 x 10^21 ~= 2^71
+
+Using 16 character random tokens will give you a possible token space of 62^16 = 4.76 x 10^28 ~= 2^95
+
 # Functions
 
 ## generate(size, [chars])
