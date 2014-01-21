@@ -6,7 +6,7 @@ Generate random tokens from your choice of randomness.
 
 Add it to your node.js project via:
 
-    npm install node-rand-token --save
+    npm install rand-token --save
 
 # Usage
 
