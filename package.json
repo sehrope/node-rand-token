@@ -1,6 +1,6 @@
 {
   "name": "rand-token",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate random tokens",
   "main": "index.js",
   "scripts": {
