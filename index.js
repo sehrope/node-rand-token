@@ -1,9 +1,8 @@
 (function () {
   "use strict";
 
-  var crypto = require('crypto'),
-      assert = require('assert'),
-      _ = require('lodash');
+  var crypto = require('crypto');
+  var assert = require('assert');
 
   var numeric = '0123456789';
   var alphaLower = 'abcdefghijklmnopqrstuvwxyz';
@@ -17,14 +16,16 @@
 
   function validateTokenChars(tokenChars) {
     assert(tokenChars);
-    assert(_.isString(tokenChars));
+    assert(typeof(tokenChars) == 'string');
     assert(tokenChars.length > 0);
     assert(tokenChars.length < 256);
   }
 
   function buildGenerator(options) {
-    assert(!options || _.isObject(options));
-    options = _.defaults(options || {}, defaults);
+    assert(!options || typeof(options) == 'object');
+    options = options || {};
+    options.chars = options.chars || defaults.chars;
+    options.source = options.source || defaults.source;
 
     // Allowed characters
     switch( options.chars ) {
@@ -77,7 +78,7 @@
         };
         break;
       default:
-        assert(_.isFunction(options.source));
+        assert(typeof(options.source) == 'function');
     }
 
     return {

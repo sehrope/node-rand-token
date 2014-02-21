@@ -21,9 +21,9 @@
   "author": "Sehrope Sarkuni <sehrope@jackdb.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash": "~2.4.1"
   },
   "devDependencies": {
+    "lodash": "~2.4.1",
     "jshint": "1.1.0",
     "mocha": "~1.16.2"
   },
