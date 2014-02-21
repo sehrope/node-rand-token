@@ -108,6 +108,7 @@
 
   module.exports = {
     "generator": buildGenerator,
-    "generate": defaultGenerator.generate
+    "generate": defaultGenerator.generate,
+    "uid": defaultGenerator.generate
   };
 })();
