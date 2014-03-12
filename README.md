@@ -16,6 +16,14 @@ Add it to your node.js project via:
     // Generate a 16 character alpha-numeric token:
     var token = randtoken.generate(16);
 
+    // Use it as a replacement for uid:
+    var uid = require('rand-token').uid;
+    var token = uid(16);
+
+    // Generate mostly sequential tokens:
+    var suid = require('rand-token').suid;
+    var token = suid(16);
+
 # Defaults
 
 The default set of allowed characters is all alpha-numeric characters. Specifically, lower case a through z, upper case A through Z, and the number 0 through 9. This gives you `(26 + 26 + 10)` = `62` possibilities per character.
@@ -27,6 +35,18 @@ Using 12 character random tokens will give you a possible token space of 62^12 =
 Using 16 character random tokens will give you a possible token space of 62^16 = 4.76 x 10^28 ~= 2^95
 
 # Functions
+
+## uid(size)
+Uses the default generator to generate a token of `size` characters.
+
+## suid(size, [epoch], [prefixLength])
+Uses the default generator to generate a token of `size` characters prefixed with the time since the given epoch in base62 padded to `prefixLength` characters. This function generates *mostly* sequential ids that can be compared with the usual string less-than/greater-than operators.
+
+By mostly, it means that a second execution of this function within the same millisecond may generate an id that is less than the second. The same holds true for ids generated from separate node processes. There's no coordination whatsover.
+
+The default epoch is 2000-01-01T00:00:00+00:00 and the default `prefixLength` is 8 characters.
+
+__NOTE:__ The prefix length is in addition to the `size` parameter. Calling this function as `suid(16)` will return a 24-character token back (8 + 16).
 
 ## generate(size, [chars])
 
@@ -69,13 +89,21 @@ Available options:
 
 # Examples
 
-To generate alpha-numeric (lower case a-z, upper case A-Z, and digits 0-9):
+To replace usage of uid with the default generator (alpha-numeric):
 
     // Create a token generator with the default settings:
-    var randtoken = require('rand-token');
+    var uid = require('rand-token').uid;
 
     // Generate a 16 character alpha-numeric token:
-    var token = randtoken.generate(16);
+    var token = uid(16)
+
+To generate *mostly* sequential ids:
+    
+    // Create a token generator with the default settings:
+    var suid = require('rand-token').suid;
+
+    // Generate a 24 (16 + 8) character alpha-numeric token:
+    var token = suid(16)
 
 To generate only lower case letters (a-z):
 
@@ -110,7 +138,7 @@ To generate only upper case letters with `crypto.randomBytes` as the random sour
 
 # Dependencies
 
-* [lodash](lodash.com)
+None.
 
 # License
 

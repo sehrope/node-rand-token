@@ -17,6 +17,23 @@ describe('Create a default random token generater', function() {
     var token = randtoken.generate(16);
     assert(token.length, 16);
   });
+
+  it('should create tokens using the uid function', function() {
+    var randtoken = require('../index.js');
+    var token = randtoken.uid(16);
+    assert(token.length, 16);
+  });
+
+  it('should create sequentially sorted tokens', function(done) {
+    var randtoken = require('../index.js');
+    var token = randtoken.suid(16);
+    function genAnotherAndCompare() {
+      var secondToken = randtoken.suid(16);
+      assert(token < secondToken);      
+      done();
+    };
+    setTimeout(genAnotherAndCompare, 10);
+  });
 });
 
 var randtoken = require('../index.js');

@@ -7,7 +7,8 @@
   var numeric = '0123456789';
   var alphaLower = 'abcdefghijklmnopqrstuvwxyz';
   var alphaUpper = alphaLower.toUpperCase();
-  var alphaNumeric = numeric + alphaLower + alphaUpper;
+  // NOTE: This is explicitly in sortable order:
+  var alphaNumeric = numeric + alphaUpper + alphaLower;
   
   var defaults = {
     "chars": 'default',
@@ -104,11 +105,39 @@
     };
   }
 
+  function base62(n) {
+    assert(n >= 0);
+    n = Math.floor(n);
+    var ret = [];
+    do {
+      var index = n % 62;
+      ret.push(alphaNumeric[index]);
+      n = Math.floor(n / 62);
+    } while( n > 0);
+    return ret.reverse().join("");
+  }
+
+  // Default epoch of "2000-01-01T00:00:00+00:00"
+  var defaultEpoch = 946684800000;
+  var defaultPrefixLength = 8;
+  function suidPrefix(epoch, prefixLength) {
+    var ret = base62(Date.now() - epoch);
+    while( ret.length < prefixLength ) {
+      ret = "0" + ret;
+    }
+    return ret;
+  }
+
   var defaultGenerator = buildGenerator();
 
   module.exports = {
-    "generator": buildGenerator,
-    "generate": defaultGenerator.generate,
-    "uid": defaultGenerator.generate
+    generator: buildGenerator,
+    generate: defaultGenerator.generate,
+    uid: defaultGenerator.generate,
+    suid: function(length, epoch, prefixLength) {
+      epoch = epoch || defaultEpoch;
+      prefixLength = prefixLength || defaultPrefixLength;
+      return suidPrefix(epoch, prefixLength) + defaultGenerator.generate(length);
+    }
   };
 })();
