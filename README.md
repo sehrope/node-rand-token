@@ -40,11 +40,9 @@ Using 16 character random tokens will give you a possible token space of 62^16 =
 Uses the default generator to generate a token of `size` characters.
 
 ## suid(size, [epoch], [prefixLength])
-Uses the default generator to generate a token of `size` characters prefixed with the time since the given epoch in base62 padded to `prefixLength` characters. This function generates *mostly* sequential ids that can be compared with the usual string less-than/greater-than operators.
+Uses the default generator to generate *mostly* sequential ids that can be compared with the usual string less-than/greater-than operators. By mostly, it means that a second execution of this function within the same millisecond may generate an id that is less than the second. The same holds true for ids generated from separate node processes. There's no coordination whatsover. This is meant to be used for situations where being able to sort tokens would be convenient, but not strictly required.
 
-By mostly, it means that a second execution of this function within the same millisecond may generate an id that is less than the second. The same holds true for ids generated from separate node processes. There's no coordination whatsover.
-
-The default epoch is 2000-01-01T00:00:00+00:00 and the default `prefixLength` is 8 characters.
+The generated tokens are of `size` characters prefixed with the time since the given epoch in base62 padded to `prefixLength` characters. The `epoch` parameter should be the unix time offset in milliseconds. The default `epoch` is 2000-01-01T00:00:00+00:00 and the default `prefixLength` is 8 characters.
 
 __NOTE:__ The prefix length is in addition to the `size` parameter. Calling this function as `suid(16)` will return a 24-character token back (8 + 16).
 
