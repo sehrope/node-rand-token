@@ -2,6 +2,8 @@
 
 Generate random tokens from your choice of randomness.
 
+[![NPM](https://nodei.co/npm/rand-token.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rand-token/)
+
 # Installation
 
 Add it to your node.js project via:
