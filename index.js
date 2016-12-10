@@ -3,6 +3,7 @@
 
   var crypto = require('crypto');
   var assert = require('assert');
+  var cryptoRandomBytes = crypto.pseudoRandomBytes || crypto.randomBytes;
 
   var numeric = '0123456789';
   var alphaLower = 'abcdefghijklmnopqrstuvwxyz';
@@ -57,7 +58,7 @@
     switch( options.source ) {
       case 'default':
         options.source = function(size, cb) {
-          return crypto.pseudoRandomBytes(size, !cb ? null : function (buf){
+          return cryptoRandomBytes(size, !cb ? null : function (buf){
             return cb(null, buf);
           });
         };
