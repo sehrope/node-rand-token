@@ -57,11 +57,7 @@
     // Source of randomness:
     switch( options.source ) {
       case 'default':
-        options.source = function(size, cb) {
-          return cryptoRandomBytes(size, !cb ? null : function (buf){
-            return cb(null, buf);
-          });
-        };
+        options.source = cryptoRandomBytes;
         break;
       case 'crypto':
         options.source = crypto.randomBytes;
