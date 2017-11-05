@@ -66,7 +66,7 @@ Creates a custom token generator.
 Available options:
 
 * `source` - source of random bytes
-    This should be either a string or a function with a signature that matches `crypto.randomBytes(size, [callback])` (returning a buffer).
+    This should be either a string or a synchronous function with the signature `(size: number): Buffer`.
 
     The following string values are also accepted:
 
