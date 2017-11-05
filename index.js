@@ -63,16 +63,12 @@
         options.source = crypto.randomBytes;
         break;
       case 'math':
-        options.source = function(size, cb) {
+        options.source = function(size) {
           var buf = new Buffer(size);
           for(var i=0;i<size;i++) {
             buf.writeUInt8(Math.floor(256 * Math.random()), i);
           }
-          if( cb ) {
-            cb(null, buf);
-          } else {
-            return buf;
-          }
+          return buf;
         };
         break;
       default:
