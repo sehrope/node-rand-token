@@ -58,7 +58,7 @@
     switch( options.source ) {
       case 'default':
         options.source = function(size, cb) {
-          return cryptoRandomBytes(size, !cb ? null : function (buf){
+          return cryptoRandomBytes(size, !cb ? undefined : function (buf){
             return cb(null, buf);
           });
         };
