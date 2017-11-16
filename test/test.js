@@ -49,6 +49,8 @@ var tokenCharsToTest = [
   {chars: 'alpha', regex: /^[a-z]{16}$/ },
   {chars: 'ALPHA', regex: /^[A-Z]{16}$/ },
   {chars: 'numeric', regex: /^[0-9]{16}$/ },
+  {chars: ['ALPHA', 'numeric'], regex: /^[a-z0-9]{16}$/},
+  {chars: ['alpha', 'ALPHA', 'numeric'], regex: /^[a-zA-Z0-9]{16}$/},
 ];
 
 _.each(randSourceToTest, function(randSourceTest) {

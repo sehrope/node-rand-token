@@ -23,6 +23,33 @@
     assert(tokenChars.length < 256);
   }
 
+  function getChars (chars) {
+    var result;
+    switch( chars ) {
+      case 'default':
+        result = alphaNumeric;
+        break;
+      case 'a-z':
+      case 'alpha':
+        result = alphaLower;
+        break;
+      case 'A-Z':
+      case 'ALPHA':
+        result = alphaUpper;
+        break;
+      case '0-9':
+      case 'numeric':
+        result = numeric;
+        break;
+      case 'base32':
+        result = alphaUpper + "234567";
+        break;
+      default:
+        // use the characters as is
+    }
+    return result;
+  }
+
   function buildGenerator(options) {
     assert(!options || typeof(options) == 'object');
     options = options || {};
@@ -30,27 +57,14 @@
     options.source = options.source || defaults.source;
 
     // Allowed characters
-    switch( options.chars ) {
-      case 'default':
-        options.chars = alphaNumeric;
-        break;
-      case 'a-z':
-      case 'alpha':
-        options.chars = alphaLower;
-        break;
-      case 'A-Z':
-      case 'ALPHA':
-        options.chars = alphaUpper;
-        break;
-      case '0-9':
-      case 'numeric':
-        options.chars = numeric;
-        break;
-      case 'base32':
-        options.chars = alphaUpper + "234567";
-        break;
-      default:
-        // use the characters as is
+    if (Array.isArray(options.chars)) {
+      var charsSet = '';
+      options.chars.forEach(function(item) {
+        charsSet += getChars(item);
+      });
+      options.chars = charsSet;
+    } else {
+      options.chars = getChars(options.chars);
     }
     validateTokenChars(options.chars);
 
