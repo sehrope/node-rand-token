@@ -50,10 +50,17 @@ var tokenCharsToTest = [
   {chars: 'numeric', regex: /^[0-9]{16}$/ },
 ];
 
+function nameOf(test) {
+  if (typeof(test) === 'function') {
+    return test.name;
+  }
+  return test;
+}
+
 randSourceToTest.forEach(function(randSourceTest) {
   tokenCharsToTest.forEach(function(tokenCharTest) {
     describe('Generate a 16 character token with tokeChars=' + tokenCharTest.chars + 
-                ' and a randSource=' + randSourceTest, function() {
+                ' and a randSource=' + nameOf(randSourceTest), function() {
       var generator;
       it('should create a generator successfully', function() {
         generator = randtoken.generator({source: randSourceTest, chars: tokenCharTest.chars});
