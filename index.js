@@ -23,6 +23,13 @@
     assert(tokenChars.length < 256);
   }
 
+  function bufferAlloc(size) {
+    if (Buffer.alloc) {
+      return Buffer.alloc(size);
+    }
+    return new Buffer(size);
+  }
+
   function buildGenerator(options) {
     assert(!options || typeof(options) == 'object');
     options = options || {};
@@ -64,7 +71,7 @@
         break;
       case 'math':
         options.source = function(size) {
-          var buf = new Buffer(size);
+          var buf = bufferAlloc(size);
           for(var i=0;i<size;i++) {
             buf.writeUInt8(Math.floor(256 * Math.random()), i);
           }
