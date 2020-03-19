@@ -1,6 +1,6 @@
-var _ = require('lodash'),
-    assert = require('assert'),
-    crypto = require('crypto');
+const _ = require('lodash');
+const assert = require('assert');
+const crypto = require('crypto');
 
 describe('Create a default random token generater', function() {
   it('should create successfully', function() {
