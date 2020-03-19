@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "jshint": "1.1.0",
+    "jshint": "^2.11.0",
     "mocha": "~3"
   },
   "engines": {
