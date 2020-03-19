@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const assert = require('assert');
 const crypto = require('crypto');
 
@@ -51,8 +50,8 @@ var tokenCharsToTest = [
   {chars: 'numeric', regex: /^[0-9]{16}$/ },
 ];
 
-_.each(randSourceToTest, function(randSourceTest) {
-  _.each(tokenCharsToTest, function(tokenCharTest) {
+randSourceToTest.forEach(function(randSourceTest) {
+  tokenCharsToTest.forEach(function(tokenCharTest) {
     describe('Generate a 16 character token with tokeChars=' + tokenCharTest.chars + 
                 ' and a randSource=' + randSourceTest, function() {
       var generator;
