@@ -1,5 +1,5 @@
 MOCHA_OPTS= --check-leaks
-REPORTER = dot
+REPORTER = tap
 VERSION = $(shell node -e 'console.log(require("./package.json").version)')
 PACKAGE_NAME = $(shell node -e 'console.log(require("./package.json").name)')
 
