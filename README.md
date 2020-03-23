@@ -29,6 +29,17 @@ Add it to your node.js project via:
     var suid = require('rand-token').suid;
     var token = suid(16);
 
+# TypeScript usage
+
+This module includes type definition:
+
+```typescript
+import { uid, suid } from 'rand-token';
+
+const token = uid(12);
+const otherToken = suid(16)
+```
+
 # Defaults
 
 The default set of allowed characters is all alpha-numeric characters. Specifically, lower case a through z, upper case A through Z, and the number 0 through 9. This gives you `(26 + 26 + 10)` = `62` possibilities per character.
