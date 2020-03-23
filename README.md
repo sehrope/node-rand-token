@@ -37,7 +37,7 @@ This module includes type definition:
 import { uid, suid } from 'rand-token';
 
 const token = uid(12);
-const otherToken = suid(16)
+const otherToken = suid(16);
 ```
 
 # Defaults
