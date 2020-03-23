@@ -1,7 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2020-03-23
+## [1.0.1] - 2020-03-23
+### Added
+- None.
+### Changed
+- Add files list to package.json so that test files are excluded from final tarball.
+### Breaking Changes
+- None.
+
+## [1.0.0] - 2020-03-23 (unpublished)
 ### Added
 - TypeScript definitions matching v0.x module.
 ### Changed
